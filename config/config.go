@@ -13,7 +13,6 @@ var DB *mongo.Client
 var MongoDBContext context.Context
 
 var DatabaseName = "events-go"
-var CollectionName = "_events"
 
 var username = "root"
 var password = "rootpassword"
