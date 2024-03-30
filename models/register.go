@@ -57,11 +57,15 @@ func (e Event) Unregister(userId string) error {
 	}
 
 	var existingRegistration Registration
-
-	err = collection.FindOne(ctx, bson.M{"userid": userID}).Decode(&existingRegistration)
+	err = collection.FindOne(ctx, bson.M{"eventid": e.ID, "userid": userID}).Decode(&existingRegistration)
 	if err != nil {
 		return err
 	}
+
+	// err = collection.FindOne(ctx, bson.M{"userid": userID,}).Decode(&existingRegistration)
+	// if err != nil {
+	// 	return err
+	// }
 
 	_, err = collection.DeleteOne(ctx, existingRegistration)
 	if err != nil {
